@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1012447870857",
+    "firebase_url": "https://the-best-burger-83479-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "the-best-burger-83479",
+    "storage_bucket": "the-best-burger-83479.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012447870857:android:6b145778a5449050a72b58",
+        "android_client_info": {
+          "package_name": "my.edu.tarc.thebestburger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012447870857-0rlhm63hu93bb77mgkbalvoj919phruu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "my.edu.tarc.thebestburger",
+            "certificate_hash": "ff90960b031f0600a2c15ea51dafba789fad4823"
+          }
+        },
+        {
+          "client_id": "1012447870857-pcikpeil8eetpvdbf7hrtinajv9uucj5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANa_oTm0i_9kQO0XFyaoIAX4Vix0q2ZWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012447870857-pcikpeil8eetpvdbf7hrtinajv9uucj5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
