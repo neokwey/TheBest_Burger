@@ -103,10 +103,11 @@ public class UserRegistration extends AppCompatActivity {
 
                                                                     dialog.dismiss();
 
-                                                                    String phonenumber = "60" + PhoneNo;
-                                                                    Intent b = new Intent(UserRegistration.this, VerifyPhone.class);
-                                                                    b.putExtra("phonenumber", phonenumber);
-                                                                    startActivity(b);
+                                                                    String phonenumber = "+60" + PhoneNo;
+                                                                    Intent verify = new Intent(UserRegistration.this,VerifyPhone.class);
+                                                                    verify.putExtra("phonenumber", phonenumber);
+                                                                    //verify.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                                    startActivity(verify);
 
                                                                 }
                                                             });

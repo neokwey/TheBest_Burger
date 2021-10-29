@@ -64,19 +64,14 @@
                         android:minHeight="48dp"
                         android:text="+60" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/txtPhone"
-                        android:layout_width="match_parent"
+                    <EditText
+                        android:id="@+id/txtPhone1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="number|phone" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:inputType="number"
-                            tools:ignore="TouchTargetSizeCheck" />
-                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
                 <Button
@@ -93,37 +88,60 @@
                     app:layout_constraintTop_toBottomOf="@+id/number"
                     app:layout_constraintVertical_bias="0.213" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cLay1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone">
 
-                    android:layout_marginTop="15dp">
+                    <TextView
+                        android:id="@+id/text1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Resendotp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <Button
+                        android:id="@+id/Resendotp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="OTP Code"
-                        android:inputType="number"
-                        android:paddingTop="11dp"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/btnblueish"
+                        android:text="Resend"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/Verify" />
 
-                <Button
-                    android:id="@+id/Verify"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btnred"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="15dp"
-                    android:text="Verify" />
+                    <Button
+                        android:id="@+id/Verify"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/btnred"
+                        android:text="Verify"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtOTP" />
 
-                <Button
-                    android:id="@+id/Resendotp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btnblueish"
-                    android:layout_marginTop="15dp"
-                    android:textColor="@color/white"
-                    android:text="Resend" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txtOTP"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        tools:layout_editor_absoluteY="15dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="OTP Code"
+                            android:inputType="number"
+                            android:paddingTop="11dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/acsignup"
@@ -136,36 +154,37 @@
                     android:textSize="15dp" />
 
                 <LinearLayout
+                    android:id="@+id/lay1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
                     <TableRow
                         android:id="@+id/hr"
-                        android:layout_marginTop="20dp"
                         android:layout_width="107dp"
                         android:layout_height="1dp"
-                        android:background="#878787"/>
+                        android:layout_marginTop="20dp"
+                        android:background="#878787" />
 
                     <TextView
                         android:id="@+id/OR"
                         android:layout_width="44dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginTop="7dp"
                         android:text="OR"
-                        android:layout_gravity="center"
                         android:textAlignment="center"
                         android:textColor="@color/Black"
                         android:textSize="17dp" />
 
                     <TableRow
                         android:id="@+id/dr"
-                        android:layout_marginTop="20dp"
                         android:layout_width="107dp"
                         android:layout_height="1dp"
-                        android:background="#878787"/>
+                        android:layout_marginTop="20dp"
+                        android:background="#878787" />
 
                 </LinearLayout>
                 <TextView

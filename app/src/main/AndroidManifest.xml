@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheBestBurger">
         <activity
+            android:name=".show_detail"
+            android:exported="true" />
+        <activity
+            android:name=".CustomerPanel_BottomNavigation"
+            android:exported="true" />
+        <activity
+            android:name=".ForgetPassword"
+            android:exported="true" />
+        <activity
             android:name=".VerifyPhone"
             android:exported="true" />
         <activity
