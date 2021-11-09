@@ -76,10 +76,6 @@ public class CustomerPanel_BottomNavigation extends AppCompatActivity implements
                 fragment = new CustomerCartFragment();
                 break;
 
-            case R.id.Order:
-                fragment = new CustomerOrdersFragment();
-                break;
-
             case R.id.Track:
                 fragment = new CustomerTrackFragment();
                 break;

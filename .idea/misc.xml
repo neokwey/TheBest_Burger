@@ -19,6 +19,7 @@
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/orange_button_background.xml" value="0.35648148148148145" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/search_back.xml" value="0.35648148148148145" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_checkout.xml" value="0.33" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_customer_panel_bottom_navigation.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_main_menu.xml" value="0.20520833333333333" />
@@ -30,9 +31,12 @@
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/fragment_customercart.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/fragment_customerhome.xml" value="0.25" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/fragment_customerorder.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/fragment_customerorders.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/fragment_customerprofile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/fragment_customertrack.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/viewholder_cart.xml" value="0.25" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/viewholder_cat.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/viewholder_ordersum.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/viewholder_popular.xml" value="0.25" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/viewholder_product.xml" value="0.22" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/menu/cust_bottom_nav.xml" value="0.36666666666666664" />

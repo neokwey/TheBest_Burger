@@ -75,11 +75,13 @@ public class UserRegistration extends AppCompatActivity {
                                 databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
+                                        String count = "0";
                                         HashMap<String, String> hashMappp = new HashMap<>();
                                         hashMappp.put("Name", Name);
                                         hashMappp.put("Email", Email);
                                         hashMappp.put("Phone Number", PhoneNo);
                                         hashMappp.put("Password", Pass);
+                                        hashMappp.put("cartCount", count);
 
                                         firebaseDatabase.getInstance().getReference("Customer")
                                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheBestBurger">
         <activity
+            android:name=".Checkout"
+            android:exported="true" />
+        <activity
             android:name=".show_detail"
             android:exported="true" />
         <activity
