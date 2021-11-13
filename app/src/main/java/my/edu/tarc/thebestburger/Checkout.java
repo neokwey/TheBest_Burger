@@ -29,8 +29,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import my.edu.tarc.thebestburger.Adapter.OrderAdapter;
 import my.edu.tarc.thebestburger.Domain.Cart2Domain;
@@ -46,6 +49,10 @@ public class Checkout extends AppCompatActivity {
     private OrderAdapter adapter;
     private RecyclerView listView;
     private ArrayList<OrderSumDomain> ordersum = new ArrayList<>();
+    private ArrayList<String> cartIDList = new ArrayList<>();
+    private ArrayList<String> qtyList = new ArrayList<>();
+    private ArrayList<String> priceList = new ArrayList<>();
+    private ArrayList<String> prodIDList = new ArrayList<>();
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
@@ -89,10 +96,19 @@ public class Checkout extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ordersum.clear();
+                cartIDList.clear();
+                qtyList.clear();
+                prodIDList.clear();
+                priceList.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
                     String price = snapshot1.child("total").getValue().toString();
                     String prodid = snapshot1.child("product_ID").getValue().toString();
                     String qty = snapshot1.child("qty").getValue().toString();
+                    String cartid = snapshot1.child("cart_ID").getValue().toString();
+                    cartIDList.add(cartid);
+                    qtyList.add(qty);
+                    prodIDList.add(prodid);
+                    priceList.add(price);
                     firebase2.child(prodid).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -122,13 +138,95 @@ public class Checkout extends AppCompatActivity {
                 mDialog.setCancelable(false);
                 mDialog.setMessage("Creating the order...");
                 mDialog.show();
-                if (COD.isChecked()){
-                    mDialog.dismiss();
-                    Intent i = new Intent(Checkout.this, CustomerHomeFragment.class);
-                    startActivity(i);
-                } else if (card.isChecked()) {
-                    mDialog.dismiss();
-                }
+                firebase3 = FirebaseDatabase.getInstance().getReference("Customer").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                firebase3.child("Order").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        int zero = 0;
+                        if (snapshot.exists()){
+                            final int count = (int)snapshot.getChildrenCount();
+                            int number = count;
+                            firebase3.child("Order").child("count").setValue(count);
+                            String orderID = "";
+                            if (number < 10) {
+                                orderID = "OR000" + number;
+                            }
+                            else if (number < 100) {
+                                orderID = "OR00" + number;
+                            }
+                            else if (number < 1000) {
+                                orderID = "OR0" + number;
+                            }
+                            else if (number < 10000) {
+                                orderID = "OR" + number;
+                            }
+                            final String OrderID = orderID;
+                            firebase3.child("Order").child(OrderID).child("Order_ID").setValue(OrderID);
+                            firebase3.child("Order").child(OrderID).child("Order_Date").setValue(mDisplayDate.getText().toString());
+                            for (int i = 0; i < cartIDList.size(); i++){
+                                final String cartid = cartIDList.get(i);
+                                final String qty = qtyList.get(i);
+                                final String prod = prodIDList.get(i);
+                                final String rm = priceList.get(i);
+                                firebase3.child("Order").child(OrderID).child("Order_Cart").child(cartid).child("Cart_ID").setValue(cartid);
+                                firebase3.child("Order").child(OrderID).child("Order_Cart").child(cartid).child("Product_ID").setValue(prod);
+                                firebase3.child("Order").child(OrderID).child("Order_Cart").child(cartid).child("Cart_Qty").setValue(qty);
+                                firebase3.child("Order").child(OrderID).child("Order_Cart").child(cartid).child("Cart_RM").setValue(rm);
+                            }
+                            if (COD.isChecked()){
+                                firebase3.child("Order").child(OrderID).child("Order_Status").setValue("Processing with Pending");
+                                firebase3.child("Order").child(OrderID).child("payment_method").setValue("Cash On Delivery");
+                                firebase3.child("Cart").removeValue();
+                                firebase3.child("cartCount").setValue(zero);
+                                mDialog.dismiss();
+                                Intent i = new Intent(Checkout.this, CustomerPanel_BottomNavigation.class);
+                                startActivity(i);
+                            } else if (card.isChecked()) {
+                                firebase3.child("Order").child(OrderID).child("Order_Status").setValue("Pending");
+                                firebase3.child("Order").child(OrderID).child("payment_method").setValue("Card");
+                                mDialog.dismiss();
+                                Intent i = new Intent(Checkout.this, CardActivity.class);
+                                i.putExtra("orderID",OrderID);
+                                startActivity(i);
+                            }
+                        }else{
+                            firebase3.child("Order").child("count").setValue("1");
+                            firebase3.child("Order").child("OR0001").child("Order_ID").setValue("OR0001");
+                            firebase3.child("Order").child("OR0001").child("Order_Date").setValue(mDisplayDate.getText().toString());
+                            for (int i = 0; i < cartIDList.size(); i++){
+                                final String cartid = cartIDList.get(i);
+                                final String qty = qtyList.get(i);
+                                final String prod = prodIDList.get(i);
+                                final String rm = priceList.get(i);
+                                firebase3.child("Order").child("OR0001").child("Order_Cart").child(cartid).child("Cart_ID").setValue(cartid);
+                                firebase3.child("Order").child("OR0001").child("Order_Cart").child(cartid).child("Product_ID").setValue(prod);
+                                firebase3.child("Order").child("OR0001").child("Order_Cart").child(cartid).child("Cart_Qty").setValue(qty);
+                                firebase3.child("Order").child("OR0001").child("Order_Cart").child(cartid).child("Cart_RM").setValue(rm);
+                            }
+                            if (COD.isChecked()){
+                                firebase3.child("Order").child("OR0001").child("Order_Status").setValue("Processing with Pending");
+                                firebase3.child("Order").child("OR0001").child("payment_method").setValue("Cash On Delivery");
+                                firebase3.child("Cart").removeValue();
+                                firebase3.child("cartCount").setValue(zero);
+                                mDialog.dismiss();
+                                Intent i = new Intent(Checkout.this, CustomerPanel_BottomNavigation.class);
+                                startActivity(i);
+                            } else if (card.isChecked()) {
+                                firebase3.child("Order").child("OR0001").child("Order_Status").setValue("Pending");
+                                firebase3.child("Order").child("OR0001").child("payment_method").setValue("Card");
+                                mDialog.dismiss();
+                                Intent i = new Intent(Checkout.this, CardActivity.class);
+                                i.putExtra("orderID","OR0001");
+                                startActivity(i);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 

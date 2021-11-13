@@ -60,6 +60,14 @@ public class UserloginPhone extends AppCompatActivity {
         txt.setVisibility(View.INVISIBLE);
         FAuth = FirebaseAuth.getInstance();
 
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(UserloginPhone.this, UserRegistration.class);
+                startActivity(i);
+            }
+        });
+
         btnemail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

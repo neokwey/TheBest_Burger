@@ -35,7 +35,7 @@ public class CustomerCartFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView recyclerViewCartList;
     private DatabaseReference firebase,firebase2,firebase3;
-    private TextView rm;
+    public static TextView rm;
     private Button checkout;
 
     @Nullable
@@ -52,8 +52,23 @@ public class CustomerCartFragment extends Fragment {
         rm = v.findViewById(R.id.textViewRM);
         checkout = v.findViewById(R.id.button);
 
-        firebase = FirebaseDatabase.getInstance().getReference("Customer").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Cart");
+
         firebase2 = FirebaseDatabase.getInstance().getReference("Customer").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Cart");
+        firebase2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()){
+                    rm.setText("RM 0.00");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        firebase = FirebaseDatabase.getInstance().getReference("Customer").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Cart");
         firebase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -65,22 +80,7 @@ public class CustomerCartFragment extends Fragment {
                     cartList.add(new CartDomain(cartid,prodid,qty));
                     adapter.notifyDataSetChanged();
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        firebase2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                double total = 0;
-                for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    total += Double.parseDouble(snapshot1.child("total").getValue().toString());
-                }
-                rm.setText(String.format("RM %.2f",total));
             }
 
             @Override

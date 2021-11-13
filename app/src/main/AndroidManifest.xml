@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheBestBurger">
         <activity
+            android:name=".customerPanel.OrderDetails"
+            android:exported="true" />
+        <activity
+            android:name=".customerPanel.CustomerPhonenumber"
+            android:exported="true" />
+        <activity
+            android:name=".customerPanel.CustomerPassword"
+            android:exported="true" />
+        <activity
+            android:name=".customerPanel.CustomerPaymentOTP"
+            android:exported="true" />
+        <activity
+            android:name=".CardActivity"
+            android:exported="true" />
+        <activity
             android:name=".Checkout"
             android:exported="true" />
         <activity
