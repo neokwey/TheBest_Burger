@@ -3,6 +3,7 @@ package my.edu.tarc.thebestburger.customerPanel;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,20 +25,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import my.edu.tarc.thebestburger.Domain.CustomerDomain;
-import my.edu.tarc.thebestburger.MainMenu;
-import my.edu.tarc.thebestburger.R;
+import my.edu.tarc.thebestburger.*;
 
 
 public class CustomerProfileFragment extends Fragment {
     EditText name;
-    Spinner State, City;
     TextView mobileno, Email;
     Button Update;
-    LinearLayout password, LogOut;
+    LinearLayout password, LogOut, Addresses;
     DatabaseReference databaseReference, data, data1;
     FirebaseDatabase firebaseDatabase;
-    String statee, cityy, suburban, email, passwordd, confirmpass;
 
     @Nullable
     @Override
@@ -50,6 +47,7 @@ public class CustomerProfileFragment extends Fragment {
         Update = (Button) v.findViewById(R.id.update);
         password = (LinearLayout) v.findViewById(R.id.passwordlayout);
         LogOut = (LinearLayout) v.findViewById(R.id.logout_layout);
+        Addresses = (LinearLayout) v.findViewById(R.id.Address_layout);
 
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Customer").child(userid);
@@ -72,7 +70,13 @@ public class CustomerProfileFragment extends Fragment {
     }
 
     public void UpdateDetail(){
-
+        Addresses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(getActivity(), AddressBook.class);
+                startActivity(a);
+            }
+        });
         mobileno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -29,5 +29,6 @@
         <item>21.00</item>
         <item>21.30</item>
     </string-array>
+    <string name="title_activity_address_books">AddressBooks</string>
 
 </resources>

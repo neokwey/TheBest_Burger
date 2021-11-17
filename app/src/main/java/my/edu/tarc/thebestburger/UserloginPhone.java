@@ -81,7 +81,7 @@ public class UserloginPhone extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 phone = "+60" + phoneno.getText().toString().trim();
-                Resendotp(phone);
+                sendverificationcode(phone);
                 otp.setVisibility(View.GONE);
                 Lay1.setVisibility(View.GONE);
                 sign.setVisibility(View.GONE);
