@@ -25,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import my.edu.tarc.thebestburger.Domain.CartDomain;
-import my.edu.tarc.thebestburger.Domain.ProductDomain;
 import my.edu.tarc.thebestburger.R;
 import my.edu.tarc.thebestburger.customerPanel.CustomerCartFragment;
 
@@ -186,7 +185,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
             plus = itemView.findViewById(R.id.plusBtn);
             minus = itemView.findViewById(R.id.minusBtn);
             num = itemView.findViewById(R.id.numberOrderTxt);
-            del = itemView.findViewById(R.id.del);
+            del = itemView.findViewById(R.id.deleteAddress);
         }
     }
 }

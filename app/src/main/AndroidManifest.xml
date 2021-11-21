@@ -20,6 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheBestBurger">
         <activity
+            android:name=".customerPanel.NewAddress"
+            android:exported="true"
+            android:parentActivityName=".customerPanel.DisplayAddress"/>
+        <activity
             android:name=".AddressBook"
             android:exported="true" />
         <!--
@@ -34,10 +38,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".AddressBooks"
-            android:exported="true"
-            android:label="@string/title_activity_address_books" />
+        <activity android:name=".customerPanel.DisplayAddress"
+            android:exported="true" />
+
         <activity
             android:name=".customerPanel.OrderDetails"
             android:exported="true" />

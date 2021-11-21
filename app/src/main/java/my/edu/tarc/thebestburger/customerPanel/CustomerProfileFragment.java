@@ -39,7 +39,7 @@ public class CustomerProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Profile");
+        getActivity().setTitle("My Profile");
         View v = inflater.inflate(R.layout.fragment_customerprofile,null);
         name = (EditText) v.findViewById(R.id.fnamee);
         Email = (TextView) v.findViewById(R.id.emailID);
@@ -73,7 +73,7 @@ public class CustomerProfileFragment extends Fragment {
         Addresses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent a = new Intent(getActivity(), AddressBook.class);
+                Intent a = new Intent(getActivity(), DisplayAddress.class);
                 startActivity(a);
             }
         });

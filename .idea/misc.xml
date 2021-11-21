@@ -17,6 +17,8 @@
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/category_background3.xml" value="0.35648148148148145" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/category_background5.xml" value="0.35648148148148145" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/ic_baseline_tick_white_24.xml" value="0.16574074074074074" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/ic_email_black_24dp.xml" value="0.3828125" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml" value="0.3828125" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22135416666666666" />
@@ -25,15 +27,19 @@
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/ic_person_black_24dp.xml" value="0.3828125" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/orange_button_background.xml" value="0.35648148148148145" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/drawable/search_back.xml" value="0.35648148148148145" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_address_book.xml" value="0.2731063238359972" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_address_books.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_card.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_checkout.xml" value="0.33" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_customer_panel_bottom_navigation.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_customer_password.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_customer_payment_otp.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_customer_phonenumber.xml" value="0.25" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_display_address.xml" value="0.22894736842105262" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_forget_password.xml" value="0.22962962962962963" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_main_menu.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_new_address.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_show_detail.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_user_registration.xml" value="0.28370786516853935" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/activity_userlogin.xml" value="0.20520833333333333" />
@@ -45,6 +51,7 @@
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/fragment_customerorders.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/fragment_customerprofile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/fragment_customertrack.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/viewholder_address.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/viewholder_cart.xml" value="0.25" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/viewholder_cat.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Neo's Desktop/AndroidStudioProjects/TheBestBurger/app/src/main/res/layout/viewholder_orderstatus.xml" value="0.36666666666666664" />
