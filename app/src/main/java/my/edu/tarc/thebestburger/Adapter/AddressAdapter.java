@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 import my.edu.tarc.thebestburger.Domain.AddressDomain;
 import my.edu.tarc.thebestburger.R;
-import my.edu.tarc.thebestburger.customerPanel.DisplayAddress;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHolder> {
     ArrayList<AddressDomain> addressDomains;
@@ -59,10 +58,10 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.ViewHold
         ImageView del;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
-            phone = itemView.findViewById(R.id.phonenum);
-            address1 = itemView.findViewById(R.id.address1);
-            address2 = itemView.findViewById(R.id.address2);
+            name = itemView.findViewById(R.id.name1);
+            phone = itemView.findViewById(R.id.phonenum1);
+            address1 = itemView.findViewById(R.id.address11);
+            address2 = itemView.findViewById(R.id.address21);
             latlon = itemView.findViewById(R.id.address3);
             del = itemView.findViewById(R.id.deleteAddress);
         }
