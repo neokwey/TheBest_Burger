@@ -1,40 +1,51 @@
 package my.edu.tarc.thebestburger;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.Place.Field;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -43,9 +54,8 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 import my.edu.tarc.thebestburger.customerPanel.NewAddress;
 
@@ -53,7 +63,7 @@ import my.edu.tarc.thebestburger.customerPanel.NewAddress;
 public class AddressBook extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
-    EditText search;
+    TextView search;
     LatLng latLng;
     LocationRequest request;
     GoogleApiClient client;
@@ -63,6 +73,9 @@ public class AddressBook extends AppCompatActivity implements OnMapReadyCallback
     boolean isPermissionGranted;
     private FusedLocationProviderClient mLocationClient;
     private int GPS_REQUEST_CODE = 9001;
+    String destination;
+    Button find;
+    List<Field> fields = Arrays.asList(Field.ID, Field.NAME);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +83,27 @@ public class AddressBook extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_address_book);
         setTitle("Edit Location");
         fab = findViewById(R.id.fab);
-        search = findViewById(R.id.txtSearch);
+        find = findViewById(R.id.button6);
         checkPermission();
         initMap();
+        find.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(AddressBook.this);
+                startActivityForResult(intent, 200);
+
+                /*try {
+
+                    //Intent i = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).build(AddressBook.this);
+                    //startActivityForResult(i,200);
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }*/
+            }
+        });
 
         mLocationClient = new FusedLocationProviderClient(this);
 
@@ -84,6 +115,11 @@ public class AddressBook extends AppCompatActivity implements OnMapReadyCallback
                 SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.fragment);
                 mapFragment.getMapAsync(this);
+
+                String apiKey = getString(R.string.api_key);
+                if (!Places.isInitialized()){
+                    Places.initialize(getApplicationContext(),apiKey);
+                }
             }
 
         }
@@ -108,24 +144,6 @@ public class AddressBook extends AppCompatActivity implements OnMapReadyCallback
         return false;
     }
 
-    @SuppressLint("MissingPermission")
-    private void getCurrLoc() {
-        mLocationClient.getLastLocation().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Location location = task.getResult();
-                gotoLocation(location.getLatitude(), location.getLongitude());
-            }
-        });
-    }
-
-    private void gotoLocation(double latitude, double longitude) {
-        LatLng latLng = new LatLng(latitude, longitude);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
-        mMap.moveCamera(cameraUpdate);
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        currMark = mMap.addMarker(new MarkerOptions().position(latLng));
-    }
-
     @Override
     public void onConnectionSuspended(int i) {
 
@@ -148,6 +166,29 @@ public class AddressBook extends AppCompatActivity implements OnMapReadyCallback
                 Toast.makeText(this,"GPS is not enable", Toast.LENGTH_SHORT).show();
             }
         }
+        if (requestCode == 200){
+            if (resultCode == RESULT_OK){
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                String name = place.getName();
+                latLng = place.getLatLng();
+                find.setText(name);
+                if (currMark == null){
+                    MarkerOptions op1 = new MarkerOptions();
+                    op1.title("Pinned location");
+                    op1.position(latLng);
+                    currMark = mMap.addMarker(op1);
+                }else{
+                    currMark.setPosition(latLng);
+                }
+            }else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                Status status = Autocomplete.getStatusFromIntent(data);
+                Toast.makeText(this, status.getStatusMessage(),Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+            return;
+        }
+
     }
 
     @Override

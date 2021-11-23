@@ -66,7 +66,7 @@ public class Checkout extends AppCompatActivity {
     private ArrayList<AddressDomain> addrList = new ArrayList<>();
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     public static ConstraintLayout layoutaddr;
-    public static TextView address;
+    public static TextView address,addrID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,8 +232,8 @@ public class Checkout extends AppCompatActivity {
                         int zero = 0;
                         if (snapshot.exists()){
                             final int count = (int)snapshot.getChildrenCount();
-                            int number = count;
-                            firebase3.child("Order").child("count").setValue(count);
+                            int number = count + 1;
+                            firebase3.child("count").setValue(number);
                             String orderID = "";
                             if (number < 10) {
                                 orderID = "OR000" + number;
@@ -251,8 +251,9 @@ public class Checkout extends AppCompatActivity {
                             firebase3.child("Order").child(OrderID).child("Order_ID").setValue(OrderID);
                             firebase3.child("Order").child(OrderID).child("Order_Date").setValue(mDisplayDate.getText().toString());
                             firebase3.child("Order").child(OrderID).child("Uid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            firebase3.child("Order").child(OrderID).child("Deivery_Address").setValue(address.getText().toString());
+                            firebase3.child("Order").child(OrderID).child("AddressID").setValue(addrID.getText().toString());
                             firebase3.child("Order").child(OrderID).child("TotalPay").setValue(totalpay.getText().toString());
+                            firebase3.child("Order").child(OrderID).child("feedback").setValue("false");
                             for (int i = 0; i < cartIDList.size(); i++){
                                 final String cartid = cartIDList.get(i);
                                 final String qty = qtyList.get(i);
@@ -330,12 +331,13 @@ public class Checkout extends AppCompatActivity {
                                 startActivity(i);
                             }
                         }else{
-                            firebase3.child("Order").child("count").setValue("1");
+                            firebase3.child("count").setValue("1");
                             firebase3.child("Order").child("OR0001").child("Order_ID").setValue("OR0001");
                             firebase3.child("Order").child("OR0001").child("Order_Date").setValue(mDisplayDate.getText().toString());
                             firebase3.child("Order").child("OR0001").child("Uid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                            firebase3.child("Order").child("OR0001").child("Deivery_Address").setValue(address.getText().toString());
+                            firebase3.child("Order").child("OR0001").child("AddressID").setValue(addrID.getText().toString());
                             firebase3.child("Order").child("OR0001").child("TotalPay").setValue("RM " + totalpay.getText().toString());
+                            firebase3.child("Order").child("OR0001").child("feedback").setValue("false");
                             for (int i = 0; i < cartIDList.size(); i++){
                                 final String cartid = cartIDList.get(i);
                                 final String qty = qtyList.get(i);
@@ -435,6 +437,7 @@ public class Checkout extends AppCompatActivity {
         edit = findViewById(R.id.button3);
         recyclerViewAddrList = findViewById(R.id.RecyclerPaymentAddress);
         address = findViewById(R.id.textView28);
+        addrID = findViewById(R.id.textView33);
         layoutaddr = findViewById(R.id.layAddress);
     }
 

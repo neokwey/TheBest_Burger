@@ -19,7 +19,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Userlogin extends AppCompatActivity {
-    Button loginphone,login;
+    Button login;
     TextInputLayout email, pass;
     TextView Forgotpassword, txt;
     FirebaseAuth FAuth;
@@ -34,7 +34,6 @@ public class Userlogin extends AppCompatActivity {
             pass = (TextInputLayout) findViewById(R.id.Lpassword);
             txt = (TextView) findViewById(R.id.textView3);
             Forgotpassword=(TextView)findViewById(R.id.forgotpass);
-            loginphone=(Button)findViewById(R.id.btnphone);
             login=(Button)findViewById(R.id.btnlogin);
             FAuth = FirebaseAuth.getInstance();
 
@@ -86,15 +85,6 @@ public class Userlogin extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent a = new Intent(Userlogin.this,ForgetPassword.class);
                     startActivity(a);
-                }
-            });
-
-            loginphone.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent signphone = new Intent(Userlogin.this,UserloginPhone.class);
-                    startActivity(signphone);
-                    finish();
                 }
             });
         }catch (Exception e){

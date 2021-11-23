@@ -20,9 +20,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheBestBurger">
         <activity
+            android:name=".customerPanel.FeedBack"
+            android:exported="true" />
+        <activity
+            android:name=".customerPanel.OrderStatus"
+            android:exported="true" />
+        <activity
+            android:name=".customerPanel.OrderHistory"
+            android:exported="true" />
+        <activity
             android:name=".customerPanel.NewAddress"
             android:exported="true"
-            android:parentActivityName=".customerPanel.DisplayAddress"/>
+            android:parentActivityName=".customerPanel.DisplayAddress" />
         <activity
             android:name=".AddressBook"
             android:exported="true" />
@@ -38,20 +47,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".customerPanel.DisplayAddress"
-            android:exported="true" />
-
         <activity
-            android:name=".customerPanel.OrderDetails"
-            android:exported="true" />
-        <activity
-            android:name=".customerPanel.CustomerPhonenumber"
+            android:name=".customerPanel.DisplayAddress"
             android:exported="true" />
         <activity
             android:name=".customerPanel.CustomerPassword"
-            android:exported="true" />
-        <activity
-            android:name=".customerPanel.CustomerPaymentOTP"
             android:exported="true" />
         <activity
             android:name=".CardActivity"
@@ -69,13 +69,7 @@
             android:name=".ForgetPassword"
             android:exported="true" />
         <activity
-            android:name=".VerifyPhone"
-            android:exported="true" />
-        <activity
             android:name=".UserRegistration"
-            android:exported="true" />
-        <activity
-            android:name=".UserloginPhone"
             android:exported="true" />
         <activity
             android:name=".Userlogin"

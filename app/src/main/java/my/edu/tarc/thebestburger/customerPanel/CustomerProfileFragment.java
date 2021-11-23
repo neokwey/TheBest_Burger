@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,10 +31,10 @@ import my.edu.tarc.thebestburger.*;
 
 
 public class CustomerProfileFragment extends Fragment {
-    EditText name;
-    TextView mobileno, Email;
+    EditText name,mobileno;
+    TextView Email;
     Button Update;
-    LinearLayout password, LogOut, Addresses;
+    LinearLayout password, LogOut, Addresses, history;
     DatabaseReference databaseReference, data, data1;
     FirebaseDatabase firebaseDatabase;
 
@@ -43,11 +45,12 @@ public class CustomerProfileFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_customerprofile,null);
         name = (EditText) v.findViewById(R.id.fnamee);
         Email = (TextView) v.findViewById(R.id.emailID);
-        mobileno = (TextView) v.findViewById(R.id.mobilenumber);
+        mobileno = (EditText) v.findViewById(R.id.etxtmobileno);
         Update = (Button) v.findViewById(R.id.update);
         password = (LinearLayout) v.findViewById(R.id.passwordlayout);
         LogOut = (LinearLayout) v.findViewById(R.id.logout_layout);
         Addresses = (LinearLayout) v.findViewById(R.id.Address_layout);
+        history = (LinearLayout) v.findViewById(R.id.OrderHistory_layout);
 
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference("Customer").child(userid);
@@ -55,7 +58,7 @@ public class CustomerProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 name.setText(dataSnapshot.child("Name").getValue().toString());
-                mobileno.setText("+60" + dataSnapshot.child("Phone Number").getValue().toString());
+                mobileno.setText(dataSnapshot.child("Phone Number").getValue().toString());
                 Email.setText(dataSnapshot.child("Email").getValue().toString());
             }
 
@@ -77,11 +80,11 @@ public class CustomerProfileFragment extends Fragment {
                 startActivity(a);
             }
         });
-        mobileno.setOnClickListener(new View.OnClickListener() {
+        history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), CustomerPhonenumber.class);
-                startActivity(i);
+                Intent o = new Intent(getActivity(), OrderHistory.class);
+                startActivity(o);
             }
         });
         password.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +92,17 @@ public class CustomerProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), CustomerPassword.class);
                 startActivity(intent);
+            }
+        });
+        Update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isValid()){
+                    data = firebaseDatabase.getReference().child("Customer");
+                    data.child("Name").setValue(name.getText().toString());
+                    data.child("Phone Number").setValue(mobileno.getText().toString());
+                    Toast.makeText(getActivity(), "Profile has been updated.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         LogOut.setOnClickListener(new View.OnClickListener() {
@@ -120,5 +134,28 @@ public class CustomerProfileFragment extends Fragment {
                 alert.show();
             }
         });
+    }
+
+    public boolean isValid(){
+        boolean isValidemail=false,isValidname=false,isValidpass=false,isValidcpass=false,isvalid = false,isValidphoneno=false;
+
+
+        if(name == null){
+            name.setError("Name is required!");
+        }else{
+            isValidname = true;
+        }
+
+        if(mobileno == null){
+            mobileno.setError("Phone number is required!");
+        }else{
+            if (mobileno.length() == 9 || mobileno.length() == 10) {
+                isValidphoneno = true;
+            } else {
+                mobileno.setError("Invalid mobile number");
+            }
+        }
+        isvalid = (isValidname && isValidphoneno) ? true : false;
+        return isvalid;
     }
 }

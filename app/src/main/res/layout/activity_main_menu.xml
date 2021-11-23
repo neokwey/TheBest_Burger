@@ -19,7 +19,7 @@
     <LinearLayout
         android:id="@+id/linearlayout"
         android:layout_width="275dp"
-        android:layout_height="440dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/background_shape"
         android:orientation="vertical"
         android:padding="10dp"
@@ -60,25 +60,12 @@
             android:text="Login with Email"
             android:textColor="#FFFFFF" />
 
-        <Button
-            android:id="@+id/SignwithPhone"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_shape"
-            android:drawableLeft="@drawable/phonewhite"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:text="Login with phone"
-            android:textColor="#FFFFFF" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="7dp"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
             <TableRow
                 android:id="@+id/hr"
@@ -115,7 +102,7 @@
             android:background="@drawable/btnblueish"
             android:gravity="center"
             android:text="Signup"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 

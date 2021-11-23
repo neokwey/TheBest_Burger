@@ -20,7 +20,6 @@ import my.edu.tarc.thebestburger.R;
 
 public class PaymentAddressAdapter extends RecyclerView.Adapter<PaymentAddressAdapter.ViewHolder> {
     ArrayList<AddressDomain> payaddressDomains;
-    private DatabaseReference db1;
 
     public PaymentAddressAdapter(ArrayList<AddressDomain> payaddressDomains){ this.payaddressDomains = payaddressDomains; }
 
@@ -42,6 +41,7 @@ public class PaymentAddressAdapter extends RecyclerView.Adapter<PaymentAddressAd
             public void onClick(View view) {
                 Checkout.address.setText(payaddressDomains.get(position).getAddr1()+"\n"+payaddressDomains.get(position).getAddr2());
                 Checkout.layoutaddr.setVisibility(View.GONE);
+                Checkout.addrID.setText(payaddressDomains.get(position).getAddrID());
             }
         });
     }

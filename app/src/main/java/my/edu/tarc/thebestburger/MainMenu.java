@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class MainMenu extends AppCompatActivity {
-    Button loginemail,loginphone,signup;
+    Button loginemail,signup;
     ImageView bgimg;
 
     @Override
@@ -62,7 +62,6 @@ public class MainMenu extends AppCompatActivity {
         });
 
         loginemail=(Button)findViewById(R.id.SignwithEmail);
-        loginphone=(Button)findViewById(R.id.SignwithPhone);
         signup=(Button)findViewById(R.id.Signup);
 
         loginemail.setOnClickListener(new View.OnClickListener() {
@@ -70,15 +69,6 @@ public class MainMenu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent signemail = new Intent(MainMenu.this,Userlogin.class);
                 startActivity(signemail);
-                finish();
-            }
-        });
-
-        loginphone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent signphone = new Intent(MainMenu.this,UserloginPhone.class);
-                startActivity(signphone);
                 finish();
             }
         });

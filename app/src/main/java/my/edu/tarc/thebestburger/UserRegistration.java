@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class UserRegistration extends AppCompatActivity {
-    Button loginemail,loginphone,register;
+    Button loginemail,register;
     TextInputLayout name, phoneno, email, pass, cpass;
     String Name, PhoneNo, Email, Pass, Cpass, role = "Customer";
     FirebaseAuth FAuth;
@@ -35,7 +35,6 @@ public class UserRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_registration);
         loginemail=(Button)findViewById(R.id.email);
-        loginphone=(Button)findViewById(R.id.phone);
         register=(Button)findViewById(R.id.btnSignUp);
 
         name=(TextInputLayout)findViewById(R.id.txtName);
@@ -104,11 +103,8 @@ public class UserRegistration extends AppCompatActivity {
                                                                 public void onClick(DialogInterface dialog, int which) {
 
                                                                     dialog.dismiss();
-
-                                                                    String phonenumber = "+60" + PhoneNo;
-                                                                    Intent verify = new Intent(UserRegistration.this,VerifyPhone.class);
-                                                                    verify.putExtra("phonenumber", phonenumber);
-                                                                    //verify.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                                    Intent verify = new Intent(UserRegistration.this, MainMenu.class);
+                                                                    verify.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                                     startActivity(verify);
 
                                                                 }
@@ -141,15 +137,6 @@ public class UserRegistration extends AppCompatActivity {
             public void onClick(View view) {
                 Intent signemail = new Intent(UserRegistration.this,Userlogin.class);
                 startActivity(signemail);
-                finish();
-            }
-        });
-
-        loginphone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent signphone = new Intent(UserRegistration.this,UserloginPhone.class);
-                startActivity(signphone);
                 finish();
             }
         });

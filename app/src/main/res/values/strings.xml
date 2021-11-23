@@ -30,5 +30,6 @@
         <item>21.30</item>
     </string-array>
     <string name="title_activity_address_books">AddressBooks</string>
+    <string name="api_key">AIzaSyAhweSAma5ES8aDpEnWu6ozh5oa8iRqny4</string>
 
 </resources>

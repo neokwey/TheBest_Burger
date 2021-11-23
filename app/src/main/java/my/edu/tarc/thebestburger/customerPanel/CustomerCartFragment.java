@@ -57,30 +57,18 @@ public class CustomerCartFragment extends Fragment {
         firebase2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!snapshot.exists()){
+                if (snapshot.exists()){
+                    cartList.clear();
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                        String cartid = snapshot1.child("cart_ID").getValue().toString();
+                        String prodid = snapshot1.child("product_ID").getValue().toString();
+                        String qty = snapshot1.child("qty").getValue().toString();
+                        cartList.add(new CartDomain(cartid,prodid,qty));
+                        adapter.notifyDataSetChanged();
+                    }
+                }else{
                     rm.setText("RM 0.00");
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        firebase = FirebaseDatabase.getInstance().getReference("Customer").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Cart");
-        firebase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                cartList.clear();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    String cartid = snapshot1.child("cart_ID").getValue().toString();
-                    String prodid = snapshot1.child("product_ID").getValue().toString();
-                    String qty = snapshot1.child("qty").getValue().toString();
-                    cartList.add(new CartDomain(cartid,prodid,qty));
-                    adapter.notifyDataSetChanged();
-                }
-
             }
 
             @Override

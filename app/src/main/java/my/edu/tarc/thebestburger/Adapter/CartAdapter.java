@@ -104,6 +104,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
                         firebase2 = FirebaseDatabase.getInstance().getReference("Customer").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Cart").child(cartDomains.get(position).getCart_ID());
                         firebase2.child("total").setValue(String.valueOf(total));
                         firebase2.child("qty").setValue(String.valueOf(numberOrder));
+                        firebase3 = FirebaseDatabase.getInstance().getReference("Customer").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Cart");
+                        firebase3.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    double total = 0;
+                                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                                        total += Double.parseDouble(snapshot1.child("total").getValue().toString());
+                                    }
+                                    CustomerCartFragment.rm.setText(String.format("RM %.2f",total));
+                                }else{
+                                    CustomerCartFragment.rm.setText("RM 0.00");
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
 
                     @Override
@@ -145,6 +165,26 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>{
                             });
                             alertDialog.show();
                         }
+                        firebase3 = FirebaseDatabase.getInstance().getReference("Customer").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Cart");
+                        firebase3.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()){
+                                    double total = 0;
+                                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                                        total += Double.parseDouble(snapshot1.child("total").getValue().toString());
+                                    }
+                                    CustomerCartFragment.rm.setText(String.format("RM %.2f",total));
+                                }else{
+                                    CustomerCartFragment.rm.setText("RM 0.00");
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                     }
 
                     @Override
