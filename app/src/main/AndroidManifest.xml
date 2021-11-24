@@ -21,7 +21,8 @@
         android:theme="@style/Theme.TheBestBurger">
         <activity
             android:name=".customerPanel.FeedBack"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".CustomerPanel_BottomNavigation"/>
         <activity
             android:name=".customerPanel.OrderStatus"
             android:exported="true" />
@@ -34,7 +35,8 @@
             android:parentActivityName=".customerPanel.DisplayAddress" />
         <activity
             android:name=".AddressBook"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".customerPanel.DisplayAddress"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
