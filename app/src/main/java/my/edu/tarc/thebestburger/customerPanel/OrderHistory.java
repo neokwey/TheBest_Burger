@@ -51,7 +51,7 @@ public class OrderHistory extends AppCompatActivity {
                     String orID = snapshot1.child("Order_ID").getValue().toString();
                     String uid = snapshot1.child("Uid").getValue().toString();
                     String orStatus = snapshot1.child("Order_Status").getValue().toString();
-                    if (uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) && orStatus.equalsIgnoreCase("completed")){
+                    if (uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) && orStatus.equalsIgnoreCase("completed") || orStatus.equalsIgnoreCase("rejected")){
                         orderIDListComfirmed.add(orID);
                         adapter.notifyDataSetChanged();
                     }else if(uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) && orStatus!="Completed" || orStatus!="completed"){
@@ -65,9 +65,7 @@ public class OrderHistory extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {  }
         });
     }
 }

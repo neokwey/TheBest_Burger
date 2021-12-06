@@ -58,7 +58,7 @@ public class CustomerTrackFragment extends Fragment {
                     String orID = snapshot1.child("Order_ID").getValue().toString();
                     String uid = snapshot1.child("Uid").getValue().toString();
                     String orStatus = snapshot1.child("Order_Status").getValue().toString();
-                    if (uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) && orStatus.equalsIgnoreCase("completed")){
+                    if (uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) && orStatus.equalsIgnoreCase("completed") || orStatus.equalsIgnoreCase("rejected")){
                         txtinfo.setText("There is no order to track");
                         txtinfo.setVisibility(View.VISIBLE);
                     }else{
@@ -70,9 +70,7 @@ public class CustomerTrackFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {  }
         });
 
         return v;

@@ -98,7 +98,8 @@ public class CustomerProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (isValid()){
-                    data = firebaseDatabase.getReference().child("Customer");
+                    String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    data = firebaseDatabase.getReference().child("Customer").child(userid);
                     data.child("Name").setValue(name.getText().toString());
                     data.child("Phone Number").setValue(mobileno.getText().toString());
                     Toast.makeText(getActivity(), "Profile has been updated.", Toast.LENGTH_SHORT).show();

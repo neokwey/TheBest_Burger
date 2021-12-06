@@ -92,10 +92,6 @@ public class CustomerHomeFragment extends Fragment {
                 getCategoryFood(cat);
             }
         });
-
-
-
-
         return v;
     }
 
@@ -131,17 +127,13 @@ public class CustomerHomeFragment extends Fragment {
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
+                        public void onCancelled(@NonNull DatabaseError error) {  }
                     });
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {  }
         });
     }
 
@@ -149,10 +141,11 @@ public class CustomerHomeFragment extends Fragment {
         popularList.clear();
         firebase = FirebaseDatabase.getInstance().getReference("Popular");
         firebase2 = FirebaseDatabase.getInstance().getReference("Product");
-        firebase.addListenerForSingleValueEvent(new ValueEventListener() {              //retriving from firebase
+        firebase.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {          //data stored to snapshot eg. P0001,P0002...
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 int count = (int)snapshot.getChildrenCount();
                 String prod_ID = "";
 
@@ -173,27 +166,25 @@ public class CustomerHomeFragment extends Fragment {
 
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dasnapshot) {
-                            ProductDomain Popularprod = dasnapshot.getValue(ProductDomain.class);
+                            //ProductDomain Popularprod = dasnapshot.getValue(ProductDomain.class);
                             String id = dasnapshot.child("product_ID").getValue().toString();
                             String name = dasnapshot.child("product_Name").getValue().toString();
                             String photo = dasnapshot.child("product_Photo").getValue().toString();
                             String price = dasnapshot.child("product_Price").getValue().toString();
-                            popularList.add(Popularprod);
+                            String cat = dasnapshot.child("product_Cat").getValue().toString();
+                            String desc = dasnapshot.child("product_Desc").getValue().toString();
+                            popularList.add(new ProductDomain(cat,desc,id,name,photo,price));
                             adapter2.notifyDataSetChanged();
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
+                        public void onCancelled(@NonNull DatabaseError error) {  }
                     });
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {  }
         });
     }
 
@@ -237,19 +228,13 @@ public class CustomerHomeFragment extends Fragment {
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
+                        public void onCancelled(@NonNull DatabaseError error) {  }
                     });
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {  }
         });
     }
-
-
 }

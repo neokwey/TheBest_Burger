@@ -101,21 +101,17 @@ public class UserRegistration extends AppCompatActivity {
                                                             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                                 @Override
                                                                 public void onClick(DialogInterface dialog, int which) {
-
                                                                     dialog.dismiss();
                                                                     Intent verify = new Intent(UserRegistration.this, MainMenu.class);
                                                                     verify.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                                     startActivity(verify);
-
                                                                 }
                                                             });
                                                             AlertDialog alert = builder.create();
                                                             alert.show();
-
                                                         } else {
                                                             mDialog.dismiss();
                                                             ReusableCodeForAll.ShowAlert(UserRegistration.this,"Error",task.getException().getMessage());
-
                                                         }
                                                     }
                                                 });
@@ -126,8 +122,6 @@ public class UserRegistration extends AppCompatActivity {
                             }
                         }
                     });
-
-
                 }
             }
         });
@@ -140,11 +134,9 @@ public class UserRegistration extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
     public boolean isValid(){
         email.setErrorEnabled(false);
         email.setError("");

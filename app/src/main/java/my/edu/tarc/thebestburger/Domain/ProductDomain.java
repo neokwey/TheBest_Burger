@@ -1,6 +1,7 @@
 package my.edu.tarc.thebestburger.Domain;
 
 public class ProductDomain {
+    private String key;
     private String product_ID;
     private String product_Name;
     private String product_Cat;
@@ -18,6 +19,14 @@ public class ProductDomain {
     }
 
     public ProductDomain() {
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getProduct_ID() {

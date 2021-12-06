@@ -89,19 +89,8 @@ public class AddressBook extends AppCompatActivity implements OnMapReadyCallback
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fields).build(AddressBook.this);
                 startActivityForResult(intent, 200);
-
-                /*try {
-
-                    //Intent i = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).build(AddressBook.this);
-                    //startActivityForResult(i,200);
-                } catch (IllegalStateException e) {
-                    e.printStackTrace();
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    e.printStackTrace();
-                }*/
             }
         });
 
@@ -145,14 +134,10 @@ public class AddressBook extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
-
-    }
+    public void onConnectionSuspended(int i) {  }
 
     @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {  }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -198,16 +183,6 @@ public class AddressBook extends AppCompatActivity implements OnMapReadyCallback
             Toast.makeText(this,"Location could not been found.",Toast.LENGTH_SHORT).show();
         }else{
             latLng = new LatLng(location.getLatitude(),location.getLongitude());
-
-            /*Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            try {
-                List<Address> myaddresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
-                String address = myaddresses.get(0).getAddressLine(0);
-                String city = myaddresses.get(0).getLocality();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
 
             mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
                 @Override
@@ -270,8 +245,6 @@ public class AddressBook extends AppCompatActivity implements OnMapReadyCallback
                 .addOnConnectionFailedListener(this)
                 .build();
         client.connect();
-        //mMap.setMyLocationEnabled(true);
-
     }
 
     private void checkPermission() {

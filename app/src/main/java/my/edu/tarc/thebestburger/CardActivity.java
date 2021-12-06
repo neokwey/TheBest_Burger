@@ -93,38 +93,30 @@ public class CardActivity extends AppCompatActivity {
                                 db1.child("P0001").child("CardNumber").setValue(number);
                                 db1.child("P0001").child("CardExp").setValue(date);
                                 db1.child("P0001").child("CardCVV").setValue(CVV);
-
                             }
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
+                        public void onCancelled(@NonNull DatabaseError error) {  }
                     });
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CardActivity.this);
                     builder.setMessage("Payment Success...");
                     builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent i = new Intent(CardActivity.this, CustomerPanel_BottomNavigation.class);
                             startActivity(i);
-
                         }
-
                     });
                     AlertDialog alert = builder.create();
                     alert.show();
                 }
-
             }
         });
     }
 
     private boolean valid() {
-
 
         cardname.setErrorEnabled(false);
         cardname.setError("");
@@ -134,7 +126,6 @@ public class CardActivity extends AppCompatActivity {
         expirydate.setError("");
         cvv.setErrorEnabled(false);
         cvv.setError("");
-
 
         boolean isValidname = false, isValidlnumber = false, isValidexpiry = false, isValidcvv = false, isvalid = false;
         if (TextUtils.isEmpty(name)) {

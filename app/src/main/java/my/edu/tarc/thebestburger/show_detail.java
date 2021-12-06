@@ -115,24 +115,17 @@ public class show_detail extends AppCompatActivity {
                                     }
 
                                     @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
+                                    public void onCancelled(@NonNull DatabaseError error) {  }
                                 });
                             }
-
-
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
+                        public void onCancelled(@NonNull DatabaseError error) {  }
                     });
                 }catch (Exception e){
                     Toast.makeText(show_detail.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
-
             }
         });
     }
@@ -150,9 +143,7 @@ public class show_detail extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {  }
         });
     }
 
